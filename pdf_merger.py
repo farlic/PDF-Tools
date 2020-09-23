@@ -16,7 +16,7 @@ if not pdfs:
     print('no pdfs found, exiting...')
     sys.exit()
 
-pdfs.sort() # os.listdir() is arbitrary
+pdfs.sort(key=lambda x: int(x.split('.')[0][5:]))
 
 show_pdfs = input('do you want to see PDFs detected? y/n ... ')
 if show_pdfs in positive_response:
