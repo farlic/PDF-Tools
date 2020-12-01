@@ -10,16 +10,19 @@ negative_response = ['n','no','nope','negative','ne','nep','nah','',None,'false'
 
 pdfs = [f for f in os.listdir() if f.endswith('.PDF') or f.endswith('.pdf')]
 
-if 'index.txt' in os.listdir():
-    os.remove('index.txt')
-
 if len(pdfs) > 1:
     print('too many files found')
+    exit_ = input()
     sys.exit()
 elif not pdfs:
     print('no files found')
+    exit_ = input()
     sys.exit()
 
+if 'index.txt' in os.listdir():
+    os.remove('index.txt')
+    print('purged old index')
+    
 while True:
     double_scan = input('are the pdfs double scanned? y/n ... ')
     if double_scan in positive_response or double_scan in negative_response:
@@ -32,7 +35,7 @@ purge = input('do you want to delete output PDF used? y/n ... ')
 pdf = pdfs[0] # select input pdf
 reader = PdfFileReader(pdf)
 
-index = input('do you want to save a index card? y/n ... ')
+index = input('do you want to save an index card? y/n ... ')
 
 for pagenum in range(reader.getNumPages()):
     if double_scan in positive_response and not pagenum %2 ==0:
