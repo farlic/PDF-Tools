@@ -59,7 +59,12 @@ else: #increment
     else: #suffix
         for pos,pdf in enumerate(pdfs):
             if write == "overwrite":
-                os.rename(pdf,f'{text}{delimiter}{pos+1}.pdf')   
-
+                try:
+                    os.rename(pdf,f'{text}{delimiter}{pos+1}.pdf')   
+                except FileExistsError:
+                    print('naming clash, please rectify first.')
+                    exit_ = input()
+                    sys.exit()
+                    
             else: #append
                 os.rename(pdf,f'{pdf[:-4]}{delimiter}{text}{delimiter}{pos+1}.pdf')
