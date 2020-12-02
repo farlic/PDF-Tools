@@ -30,7 +30,12 @@ if index in positive_response:
         sys.exit()
 
 else:
-    pdfs.sort(key=lambda x: int(x.split('.')[0][5:]))
+    try:
+        pdfs.sort(key=lambda x: int(x.split('.')[0][5:]))
+    except ValueError:
+        print('bad filenames, please format as page_{num}')
+        exit_ = input()
+        sys.exit()
 
 if lines:
     for pos,line in enumerate(lines):
