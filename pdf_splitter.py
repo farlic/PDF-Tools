@@ -30,7 +30,7 @@ while True:
     else:
         print('false input detected')
 
-purge = input('do you want to delete output PDF used? y/n ... ')
+purge = input('do you want to delete the PDF used? y/n ... ')
 
 pdf = pdfs[0] # select input pdf
 reader = PdfFileReader(pdf)
